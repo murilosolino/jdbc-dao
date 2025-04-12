@@ -6,6 +6,7 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.Date;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -36,6 +37,10 @@ public class Main {
             System.out.println(s);
         }
 
+        System.out.println("===== TEST 4 insert ======");
+        Seller newSeller = new Seller(null, "Steve", "steve@gmail.com", new Date(), 3000.0, dep);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New id = " + newSeller.getId());
 
         DB.closeConnection();
     }
