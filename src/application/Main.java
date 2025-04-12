@@ -29,6 +29,13 @@ public class Main {
             System.out.println(s);
         }
 
+        System.out.println("===== TEST 3 FindAll ======");
+        List<Seller> list2 = sellerDao.findAll();
+
+        for (Seller s : list2){
+            System.out.println(s);
+        }
+
 
         DB.closeConnection();
     }
