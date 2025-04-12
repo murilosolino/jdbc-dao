@@ -67,13 +67,4 @@ public class DB {
         }
     }
 
-    public static void closePreparedStatement(PreparedStatement preparedStatement){
-        if (preparedStatement != null){
-            try{
-                preparedStatement.close();
-            }catch (SQLException e){
-                throw new DbException(e.getMessage());
-            }
-        }
-    }
 }
