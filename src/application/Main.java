@@ -42,11 +42,14 @@ public class Main {
         sellerDao.insert(newSeller);
         System.out.println("Inserted! New id = " + newSeller.getId());
 
-        System.out.println("===== TEST 5 insert ======");
+        System.out.println("===== TEST 5 update ======");
         seller = sellerDao.findById(1);
         seller.setName("Bruce Wayne");
         sellerDao.update(seller);
         System.out.println("Update Complete");
+
+        System.out.println("===== TEST 6 delete ======");
+        sellerDao.deleteById(10);
 
         DB.closeConnection();
     }

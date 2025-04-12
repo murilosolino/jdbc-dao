@@ -61,10 +61,9 @@ public class SellerDaoJDBC implements SellerDao {
     @Override
     public void update(Seller obj) {
         PreparedStatement st = null;
-        ResultSet rs = null;
 
         try {
-
+            conn.setAutoCommit(false);
             st = conn.prepareStatement(
                     "UPDATE seller " +
                             "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " +
@@ -81,9 +80,14 @@ public class SellerDaoJDBC implements SellerDao {
 
             int rowsAffected = st.executeUpdate();
             System.out.println("ROWS AFFECTED: " + rowsAffected);
-
+            conn.commit();
         } catch (SQLException e) {
-            throw new DbException(e.getMessage());
+            try {
+                conn.rollback();
+                throw new DbException("ROLLBACK " + e.getMessage());
+            } catch (SQLException ex) {
+                throw new DbException("ERRO NO ROLLBACK: " +ex.getMessage());
+            }
         }finally {
             DB.closeStatement(st);
         }
@@ -91,7 +95,29 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement st = null;
 
+        try {
+            conn.setAutoCommit(false);
+            st = conn.prepareStatement("DELETE FROM seller WHERE Id = ?");
+            st.setInt(1,id);
+
+            int rowsAfeccted = st.executeUpdate();
+            if (rowsAfeccted == 0){
+                throw new DbException("REGISTRO NAO ENCONTRADO: NENHUM DADO FOI EXCLUIDO");
+            }else {
+                System.out.println("Rows Affected: " + rowsAfeccted);
+                conn.commit();
+            }
+
+        }catch (SQLException e){
+            try {
+                conn.rollback();
+                throw new DbException("ROLLBACK: " + e.getMessage());
+            } catch (SQLException ex) {
+                throw new DbException("Erro no ROLLBACK: " + e.getMessage());
+            }
+        }
     }
 
     @Override
