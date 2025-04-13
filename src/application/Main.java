@@ -65,7 +65,10 @@ public class Main {
         System.out.println("========= TEST 6 Department update =============");
         dep.setId(7);
         dep.setName("Financial");
-        departmentDao.update(dep);
+        //departmentDao.update(dep);
+
+        System.out.println("============ TEST 7 Department delete ===============");
+        departmentDao.deleteById(7);
 
         DB.closeConnection();
 
