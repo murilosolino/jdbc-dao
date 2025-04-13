@@ -4,7 +4,7 @@ Projeto de estudo do padrão DAO utilizando JDBC.
 
 ## Descrição
 
-Este projeto tem como objetivo praticar e entender o uso de JDBC em Java, implementando o padrão DAO (Data Access Object) para as entidades `Seller` e `Department`. Atualmente, a implementação de `SellerDao` está completa, enquanto `DepartmentDao` ainda está pendente.
+Este projeto tem como objetivo praticar e entender o uso de JDBC em Java, implementando o padrão DAO (Data Access Object) para as entidades `Seller` e `Department`.
 
 ## Estrutura do Projeto
 
@@ -21,14 +21,17 @@ jdbc-dao/
 │       ├── dao/
 │       │   ├── DaoFactory.java
 │       │   ├── SellerDao.java
-│       │   └── DepartmentDao.java      # interface sem implementação
+│       │   └── DepartmentDao.java
 │       ├── entities/
 │       │   ├── Seller.java
 │       │   └── Department.java
 │       └── impl/
-│           └── SellerDaoJDBC.java
-├── db.properties (criar na raiz do projeto)
+│           ├── SellerDaoJDBC.java
+│           └── DepartmentDaoJDBC.java
+├── db.properties
 └── .gitignore, .iml, etc.
+```
+
 ````
 
 ## Tecnologias
@@ -92,8 +95,11 @@ Na IDE, execute a classe `application.Main`. Ela vai testar os métodos:
 ## Status
 
 - ✅ Implementação completa de `SellerDaoJDBC`
-- ⚠️ `DepartmentDao` (interface) criada, mas **falta implementar** a classe `DepartmentDaoJDBC`
+- ✅ Implementação completa de `DepartmentDao`
 
+## Notas
+
+ - ⚠️ O arquivo `application.Main` com os testes não foi desenvolvido para executar todos ao mesmo tempo. Sinta-se à vontade para comentar alguns blocos de testes e usar da maneira que preferir.
 
 *Desenvolvido por Murilo Solino*
 
