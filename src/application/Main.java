@@ -13,8 +13,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        /****************** SELLER TEST ************************/
-     /*   SellerDao sellerDao = DaoFactory.createSellerDao();
+        /***************** SELLER TEST ************************/
+       SellerDao sellerDao = DaoFactory.createSellerDao();
 
         System.out.println("===== TEST 1 FindByID ======");
         Seller seller = sellerDao.findById(5);
@@ -49,30 +49,35 @@ public class Main {
         System.out.println("Update Complete");
 
         System.out.println("===== TEST 6 delete ======");
-        sellerDao.deleteById(10);*/
+        sellerDao.deleteById(10);
 
         /**********************DEPARTMENT TEST*********************/
         DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
-        Department dep = new Department(null, "DevOps");
+        Department dep2 = new Department(null, "DevOps");
 
-        /*System.out.println("======= TEST 5 Department insert ==============");
-        departmentDao.insert(dep);
+        System.out.println("======= TEST 5 Department insert ==============");
+        departmentDao.insert(dep2);
+        System.out.println();
 
         System.out.println("===================");
-        System.out.println(dep.toString());*/
+        System.out.println(dep2.toString());
+        System.out.println();
 
-        //System.out.println("========= TEST 6 Department update =============");
-        //dep.setId(7);
-        //dep.setName("Financial");
-        //departmentDao.update(dep);
+        System.out.println("========= TEST 6 Department update =============");
+        dep2.setId(8);
+        dep2.setName("Financial");
+        departmentDao.update(dep2);
+        System.out.println();
 
-       // System.out.println("============ TEST 7 Department delete ===============");
-       // departmentDao.deleteById(7);
+        System.out.println("============ TEST 7 Department delete ===============");
+        departmentDao.deleteById(10);
+        System.out.println();
 
         System.out.println("========= TEST 8 Department findById =============");
         Department department = departmentDao.findById(3);
         System.out.println(department.toString());
+        System.out.println();
 
         System.out.println("========= TEST 9 Department findAll =============");
         List<Department> departmentList = departmentDao.findAll();
