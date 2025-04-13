@@ -6,6 +6,7 @@ import model.dao.DepartmentDao;
 import model.entities.Department;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentDaoJDBC implements DepartmentDao {
@@ -96,11 +97,56 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public Department findById(Integer id) {
-        return null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM department WHERE Id = ?");
+            st.setInt(1,id);
+
+            rs = st.executeQuery();
+
+            if (rs.next()){
+                Department dep = new Department(rs.getInt("Id"), rs.getString("Name"));
+                return dep;
+            } else {
+                throw new DbException("NENHUM REGISTRO ENCONTRADO PARA O ID: " + id);
+            }
+        }catch (SQLException  e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 
     @Override
     public List<Department> findAll() {
-        return List.of();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM department");
+            rs = st.executeQuery();
+            List<Department> list = new ArrayList<>();
+
+            while (rs.next()){
+                Department dep = new Department(rs.getInt("Id"), rs.getString("Name"));
+                list.add(dep);
+            }
+
+            if (list.isEmpty()){
+                throw new DbException("NENHUM REGISTRO ENCONTRADO");
+            }
+
+            return list;
+
+        }catch (SQLException  e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 }
+

@@ -62,14 +62,23 @@ public class Main {
         System.out.println("===================");
         System.out.println(dep.toString());*/
 
-        System.out.println("========= TEST 6 Department update =============");
-        dep.setId(7);
-        dep.setName("Financial");
+        //System.out.println("========= TEST 6 Department update =============");
+        //dep.setId(7);
+        //dep.setName("Financial");
         //departmentDao.update(dep);
 
-        System.out.println("============ TEST 7 Department delete ===============");
-        departmentDao.deleteById(7);
+       // System.out.println("============ TEST 7 Department delete ===============");
+       // departmentDao.deleteById(7);
 
+        System.out.println("========= TEST 8 Department findById =============");
+        Department department = departmentDao.findById(3);
+        System.out.println(department.toString());
+
+        System.out.println("========= TEST 9 Department findAll =============");
+        List<Department> departmentList = departmentDao.findAll();
+        for (Department dep1 : departmentList){
+            System.out.println(dep1);
+        }
         DB.closeConnection();
 
     }
