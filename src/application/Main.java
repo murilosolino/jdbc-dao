@@ -54,12 +54,20 @@ public class Main {
         /**********************DEPARTMENT TEST*********************/
         DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
-        System.out.println("======= TEST 5 Department insert ==============");
         Department dep = new Department(null, "DevOps");
+
+        /*System.out.println("======= TEST 5 Department insert ==============");
         departmentDao.insert(dep);
 
         System.out.println("===================");
-        System.out.println(dep.toString());
+        System.out.println(dep.toString());*/
+
+        System.out.println("========= TEST 6 Department update =============");
+        dep.setId(7);
+        dep.setName("Financial");
+        departmentDao.update(dep);
+
         DB.closeConnection();
+
     }
 }
