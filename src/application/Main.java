@@ -2,6 +2,7 @@ package application;
 
 import db.DB;
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -9,12 +10,11 @@ import model.entities.Seller;
 import java.util.Date;
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
-        SellerDao sellerDao = DaoFactory.createSellerDao();
+        /****************** SELLER TEST ************************/
+     /*   SellerDao sellerDao = DaoFactory.createSellerDao();
 
         System.out.println("===== TEST 1 FindByID ======");
         Seller seller = sellerDao.findById(5);
@@ -49,8 +49,17 @@ public class Main {
         System.out.println("Update Complete");
 
         System.out.println("===== TEST 6 delete ======");
-        sellerDao.deleteById(10);
+        sellerDao.deleteById(10);*/
 
+        /**********************DEPARTMENT TEST*********************/
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+
+        System.out.println("======= TEST 5 Department insert ==============");
+        Department dep = new Department(null, "DevOps");
+        departmentDao.insert(dep);
+
+        System.out.println("===================");
+        System.out.println(dep.toString());
         DB.closeConnection();
     }
 }
